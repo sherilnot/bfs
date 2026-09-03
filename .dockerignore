@@ -1,0 +1,20 @@
+# Keep the build context small and reproducible.
+node_modules
+npm-debug.log*
+
+# Runtime data and secrets never belong in an image.
+data
+.env
+*.log
+
+# Source material the site does not ship (only the .webp frames are used).
+_source-frames
+
+# Dev / VCS tooling.
+.git
+.gitignore
+.vscode
+.DS_Store
+
+# Docs and tests aren't needed at runtime.
+server/*.test.js

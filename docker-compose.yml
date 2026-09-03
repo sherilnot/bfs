@@ -1,0 +1,25 @@
+# Self-hosted deployment: one app container with a persistent volume for the
+# SQLite database. Put a TLS-terminating reverse proxy (nginx, Caddy,
+# Cloudflare) in front and keep TRUST_PROXY=1 so rate limiting sees real IPs.
+services:
+  app:
+    build: .
+    restart: unless-stopped
+    ports:
+      # host:container — change the host port if 3000 is taken.
+      - "3000:3000"
+    environment:
+      HOST: 0.0.0.0
+      PORT: 3000
+      DB_PATH: /app/data/enquiries.db
+      # Enables the admin read endpoints. Generate with:
+      #   node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+      ADMIN_TOKEN: ${ADMIN_TOKEN:?set ADMIN_TOKEN in your environment or .env}
+      # Set to 1 when running behind a reverse proxy.
+      TRUST_PROXY: ${TRUST_PROXY:-1}
+    volumes:
+      # Named volume persists enquiries across restarts and rebuilds.
+      - bfs-data:/app/data
+
+volumes:
+  bfs-data:

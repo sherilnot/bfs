@@ -122,6 +122,52 @@ queries neutralise SQL injection attempts.
 - **Forwarded headers are only trusted** when `TRUST_PROXY` is set; otherwise a
   client could spoof its IP past the limiter.
 
+## Deployment
+
+The app is self-contained: one Node process serves the static site and the API,
+and stores enquiries in a SQLite file. No external database or build step.
+
+### Docker (recommended)
+
+```bash
+docker build -t bfs-projects .
+docker run -d --name bfs \
+  -p 3000:3000 \
+  -e ADMIN_TOKEN="$(node -e "console.log(require('crypto').randomBytes(32).toString('hex'))")" \
+  -e TRUST_PROXY=1 \
+  -v bfs-data:/app/data \
+  bfs-projects
+```
+
+The image runs as a non-root user, binds `0.0.0.0`, keeps the database on the
+`/app/data` volume, and ships a `HEALTHCHECK` that polls `/api/health`.
+
+### Docker Compose
+
+```bash
+export ADMIN_TOKEN="$(node -e "console.log(require('crypto').randomBytes(32).toString('hex'))")"
+docker compose up -d --build
+```
+
+`docker-compose.yml` wires up a persistent named volume (`bfs-data`) and
+requires `ADMIN_TOKEN` to be set. Enquiries survive restarts and rebuilds.
+
+### Platform (Render, Railway, Fly.io, etc.)
+
+- Build/start command: `npm ci --omit=dev` then `npm start`
+- Set `HOST=0.0.0.0`, `ADMIN_TOKEN`, `TRUST_PROXY=1`
+- Point `DB_PATH` at a mounted persistent disk (e.g. `/data/enquiries.db`).
+  Ephemeral filesystems lose every enquiry on redeploy.
+- Health check path: `/api/health`
+
+See `.env.production.example` for the full set of variables.
+
+### Behind a reverse proxy
+
+Terminate TLS at nginx / Caddy / Cloudflare and forward to the app. Set
+`TRUST_PROXY=1` so the rate limiter reads the real client IP from
+`X-Forwarded-For` instead of the proxy's address.
+
 ### Before going to production
 
 - **Serve over HTTPS.** Submissions carry personal contact details and are
