@@ -630,6 +630,13 @@ body.is-locked{overflow:hidden}
   border:1px solid rgba(255,255,255,.12);
   backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
 }
+/* Google Form call-to-action variant (no on-page fields). */
+.enquiry--cta{text-align:left}
+.enquiry__lead{
+  font-size:1.02rem;line-height:1.65;color:rgba(255,255,255,.8);
+  margin:0 0 22px;max-width:52ch;
+}
+
 .enquiry__row{display:grid;grid-template-columns:1fr 1fr;gap:18px}
 .field{display:flex;flex-direction:column;gap:8px;margin-bottom:18px}
 .field__label{

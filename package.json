@@ -2,7 +2,7 @@
   "name": "building-future-solution",
   "version": "2.0.0",
   "private": true,
-  "description": "Building Future Solution — static marketing site (enquiry form via Web3Forms)",
+  "description": "Building Future Solution — static marketing site (enquiries via Google Forms)",
   "scripts": {
     "dev": "npx --yes http-server . -p 4123 -c-1"
   }

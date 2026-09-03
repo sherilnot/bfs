@@ -597,91 +597,23 @@
         </a>
       </div>
 
-      <!-- Enquiry form. Posts to Web3Forms, which emails the submission to the
-           client. The native action/method keep it working if JS is off. -->
-      <form class="enquiry" action="https://api.web3forms.com/submit" method="post" novalidate
-            data-enquiry-form data-reveal data-reveal-delay="300">
-        <!-- Web3Forms access key. Create a free key at https://web3forms.com
-             (tied to the client's email) and paste it below. Submissions are
-             emailed straight to that address — no backend required. -->
-        <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY">
-        <input type="hidden" name="subject" value="New enquiry from Building Future Solution">
-        <input type="hidden" name="from_name" value="Building Future Solution website">
-        <div class="enquiry__row">
-          <div class="field">
-            <label class="field__label" for="eq-name">Name <span aria-hidden="true">*</span></label>
-            <input class="field__input" id="eq-name" name="name" type="text"
-                   autocomplete="name" required minlength="2" maxlength="80"
-                   aria-describedby="eq-name-err">
-            <p class="field__error" id="eq-name-err" data-error-for="name" role="alert"></p>
-          </div>
-
-          <div class="field">
-            <label class="field__label" for="eq-email">Email <span aria-hidden="true">*</span></label>
-            <input class="field__input" id="eq-email" name="email" type="email"
-                   autocomplete="email" required maxlength="254"
-                   aria-describedby="eq-email-err">
-            <p class="field__error" id="eq-email-err" data-error-for="email" role="alert"></p>
-          </div>
-        </div>
-
-        <div class="enquiry__row">
-          <div class="field">
-            <label class="field__label" for="eq-phone">Phone</label>
-            <input class="field__input" id="eq-phone" name="phone" type="tel"
-                   autocomplete="tel" maxlength="30" aria-describedby="eq-phone-err">
-            <p class="field__error" id="eq-phone-err" data-error-for="phone" role="alert"></p>
-          </div>
-
-          <div class="field">
-            <label class="field__label" for="eq-sector">Sector</label>
-            <select class="field__input field__input--select" id="eq-sector" name="sector"
-                    aria-describedby="eq-sector-err">
-              <option value="">Select a sector…</option>
-              <option value="retail">Retail</option>
-              <option value="hospitality">Hospitality</option>
-              <option value="cafe-restaurant">Café / Restaurant</option>
-              <option value="fast-food">Fast Food</option>
-              <option value="commercial-office">Commercial Office</option>
-              <option value="sporting-venue">Sporting Venue</option>
-              <option value="other">Other</option>
-            </select>
-            <p class="field__error" id="eq-sector-err" data-error-for="sector" role="alert"></p>
-          </div>
-        </div>
-
-        <div class="field">
-          <label class="field__label" for="eq-message">
-            About your project <span aria-hidden="true">*</span>
-          </label>
-          <textarea class="field__input field__input--area" id="eq-message" name="message"
-                    rows="4" required minlength="10" maxlength="2000"
-                    aria-describedby="eq-message-err"></textarea>
-          <p class="field__error" id="eq-message-err" data-error-for="message" role="alert"></p>
-        </div>
-
-        <!-- Honeypot: off-screen and hidden from assistive tech, so only bots
-             ever fill it in. -->
-        <div class="enquiry__trap" aria-hidden="true">
-          <label for="eq-company-website">Company website</label>
-          <input id="eq-company-website" name="company_website" type="text"
-                 tabindex="-1" autocomplete="off">
-          <!-- Web3Forms' own honeypot: it silently drops any submission where
-               this is filled. -->
-          <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off">
-        </div>
-
+      <!-- Enquiries are collected via a Google Form. The button opens it in a
+           new tab; submissions land in the linked Google Sheet. -->
+      <div class="enquiry enquiry--cta" data-reveal data-reveal-delay="300">
+        <p class="enquiry__lead">
+          Tell us about your project and we'll get back to you. It takes a
+          minute — name, contact details, sector and a short brief.
+        </p>
         <div class="enquiry__foot">
-          <button class="btn btn--accent btn--lg" type="submit" data-enquiry-submit data-cursor="hide">
-            <span>Send Enquiry</span>
+          <a class="btn btn--accent btn--lg"
+             href="https://docs.google.com/forms/d/e/1FAIpQLSfXN19ZIC-q3ExaTba0Xb_mxANYV5iUxJ2QD-YolHFC5VnLeA/viewform"
+             target="_blank" rel="noopener" data-magnetic data-cursor="hide">
+            <span>Open Enquiry Form</span>
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
-          </button>
+          </a>
           <p class="enquiry__note">We usually reply within one business day.</p>
         </div>
-
-        <!-- Status messages are announced to screen readers as they appear. -->
-        <p class="enquiry__status" data-enquiry-status role="status" aria-live="polite"></p>
-      </form>
+      </div>
     </div>
   </section>
 
@@ -844,6 +776,5 @@
 <script src="assets/js/main.js" defer></script>
 <script src="assets/js/effects.js" defer></script>
 <script src="assets/js/frames.js" defer></script>
-<script src="assets/js/enquiry.js" defer></script>
 </body>
 </html>

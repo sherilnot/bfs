@@ -1,15 +1,16 @@
 # Building Future Solution
 
 Single-page marketing site for Building Future Solution. Pure static files —
-HTML, CSS, JS and images — with the enquiry form handled by
-[Web3Forms](https://web3forms.com), so there is no backend or database to run.
+HTML, CSS, JS and images — with enquiries collected through a linked
+[Google Form](https://docs.google.com/forms/d/e/1FAIpQLSfXN19ZIC-q3ExaTba0Xb_mxANYV5iUxJ2QD-YolHFC5VnLeA/viewform).
+There is no backend or database to run.
 
 ## Layout
 
 ```
 index.html            the single page
 assets/css            styles, graphics, animations
-assets/js             frontend behaviour (enquiry.js submits the form)
+assets/js             frontend behaviour (main, effects, hero frames)
 assets/frames         hero frame sequence
 images                logo and photography
 ```
@@ -22,22 +23,15 @@ Any static file server works. A convenience script is included:
 npm run dev           # serves at http://127.0.0.1:4123
 ```
 
-Or open `index.html` directly, though the enquiry form's fetch call works best
-when served over http rather than the `file://` protocol.
+## Enquiries (Google Forms)
 
-## Enquiry form (Web3Forms)
+The contact section links out to a Google Form. Submissions land in the
+form's linked Google Sheet — no third-party service or key required.
 
-The contact form posts to Web3Forms, which emails each submission to the
-address tied to your access key. To activate it:
-
-1. Go to [web3forms.com](https://web3forms.com), enter the destination email,
-   and copy the access key they send you.
-2. In `index.html`, replace `YOUR_WEB3FORMS_ACCESS_KEY` with that key.
-3. Submit the form once to confirm the email arrives.
-
-Validation runs client-side in `assets/js/enquiry.js` (name, email, phone,
-sector, message), with a honeypot to catch bots. The form keeps a native
-`action`/`method`, so it still submits if JavaScript is unavailable.
+To change the form, edit the link in the enquiry section of `index.html`
+(search for `docs.google.com/forms`). The form currently collects name,
+email, phone and sector; add an "About your project" question in the Google
+Forms editor if you want the enquiry brief captured too.
 
 ## Deployment (Cloudflare Pages)
 
@@ -49,8 +43,8 @@ nodes and provisions HTTPS automatically.
 2. Build settings: **no build command**, output directory `/` (root).
 3. Deploy — you get a free `*.pages.dev` URL.
 4. Add the custom domain `buildingfuturesolution.com.au` under
-   **Custom domains**, then point the domain's DNS at Cloudflare (moving the
-   nameservers is simplest). HTTPS is issued automatically.
+   **Custom domains**, then point the domain's DNS at Cloudflare. HTTPS is
+   issued automatically.
 
 GitHub Pages and Netlify also work; Cloudflare is preferred here for its
 Australian edge presence.
