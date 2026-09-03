@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#000000">
+<title>BFS Projects | Melbourne Shopfitting &amp; Commercial Fitouts Since 2024</title>
+<meta name="description" content="Established in 2024, BFS Projects deliver shopfitting, commercial joinery, design, signage and fitout projects across Australia. 100% Australian owned.">
+
+<link rel="icon" href="images/logo.png?v=4">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Display: Bricolage Grotesque (variable 400–800, one file per subset)
+     Body: Manrope · Technical labels: JetBrains Mono -->
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+<link rel="preload" as="image" fetchpriority="high" href="assets/frames/poster.webp">
+<!-- Only warm the first sequence frame where the sequence will actually
+     run. The preload scanner ignores JS logic, so without the media
+     query phones would download a frame they never display. -->
+<link rel="preload" as="image" href="assets/frames/frame-001.webp" media="(min-width: 901px)">
+<link rel="stylesheet" href="assets/css/styles.css">
+<link rel="stylesheet" href="assets/css/graphics.css">
+<link rel="stylesheet" href="assets/css/animations.css">
+
+<!-- Marks the document as scripted. Everything that starts hidden for an
+     animation is gated behind this class, so if JS never runs the page
+     still renders fully instead of appearing blank. -->
+<script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+<script>document.body.classList.add('is-loading');</script>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- ============ PRELOADER ============ -->
+<div class="preloader" data-preloader aria-hidden="true">
+  <div class="preloader__panel"></div>
+  <div class="preloader__panel"></div>
+  <div class="preloader__panel"></div>
+  <div class="preloader__panel"></div>
+  <div class="preloader__core">
+    <span class="preloader__mark">
+      <svg viewBox="0 0 100 100" aria-hidden="true">
+        <path class="pl-shape" d="M50 8 L88 30 V70 L50 92 L12 70 V30 Z" pathLength="1"/>
+        <path class="pl-shape" d="M50 28 L70 40 V62 L50 74 L30 62 V40 Z" pathLength="1"/>
+      </svg>
+    </span>
+    <span class="preloader__label">BFS Projects</span>
+    <span class="preloader__bar"><i data-preloader-bar></i></span>
+    <span class="preloader__count"><span data-preloader-count>0</span>%</span>
+  </div>
+</div>
+
+<!-- ============ DECORATIVE LAYERS ============ -->
+<div class="grain" aria-hidden="true"></div>
+<div class="cursor" data-cursor-root aria-hidden="true">
+  <span class="cursor__dot" data-cursor-dot></span>
+  <span class="cursor__ring" data-cursor-ring><span class="cursor__label" data-cursor-label></span></span>
+</div>
+<div class="scroll-progress" aria-hidden="true"><span data-progress-bar></span></div>
+
+<!-- ============ HEADER ============ -->
+<header class="site-header" data-header>
+  <div class="shell site-header__inner">
+    <a class="brand" href="#" aria-label="BFS Projects home" data-cursor="link">
+      <img class="brand__mark"
+           src="images/logo.png?v=4"
+           alt="BFS Projects logo" height="52" decoding="async">
+      <span class="brand__text">
+        <strong>BFS</strong>
+        <em>Projects</em>
+      </span>
+    </a>
+
+    <nav class="nav" aria-label="Primary">
+      <ul class="nav__list">
+        <li><a class="nav__link is-current" href="#" aria-current="page" data-cursor="link">Home</a></li>
+        <li><a class="nav__link" href="#about" data-cursor="link">About</a></li>
+        <li><a class="nav__link" href="#process" data-cursor="link">Process</a></li>
+        <li><a class="nav__link" href="#projects" data-cursor="link">Projects</a></li>
+        <li><a class="nav__link" href="#services" data-cursor="link">Services</a></li>
+      </ul>
+    </nav>
+
+    <div class="site-header__actions">
+      <a class="phone-link" href="tel:0394321044" data-cursor="link">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .57 3.6 1 1 0 0 1-.25 1z"/></svg>
+        <span>03 9432 1044</span>
+      </a>
+      <a class="btn btn--accent btn--sm" href="#contact" data-magnetic data-cursor="hide">
+        <span>Get a Quote</span>
+      </a>
+      <button class="burger" type="button" data-menu-toggle aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ============ MOBILE MENU ============ -->
+<div class="mobile-menu" id="mobile-menu" data-menu hidden>
+  <span class="mobile-menu__glow" aria-hidden="true"></span>
+  <nav class="mobile-menu__inner" aria-label="Mobile">
+    <ul>
+      <li><a href="#" data-menu-link><i>01</i> Home</a></li>
+      <li><a href="#about" data-menu-link><i>02</i> About</a></li>
+      <li><a href="#process" data-menu-link><i>03</i> Process</a></li>
+      <li><a href="#projects" data-menu-link><i>04</i> Projects</a></li>
+      <li><a href="#services" data-menu-link><i>05</i> Services</a></li>
+      <li><a href="#contact" data-menu-link><i>06</i> Contact</a></li>
+    </ul>
+    <div class="mobile-menu__foot">
+      <a href="tel:0394321044">03 9432 1044</a>
+      <a href="mailto:siraj@bfs.com.au">siraj@bfs.com.au</a>
+      <a href="mailto:richard@bfs.com.au">richard@bfs.com.au</a>
+    </div>
+  </nav>
+</div>
+
+<main id="main">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" data-hero>
+    <div class="hero__media" aria-hidden="true">
+      <!-- Frame sequence: plays once on load, holds the final frame.
+           The <img> underneath is the poster and the no-JS fallback;
+           the canvas fades over it once the first frame is decoded. -->
+      <img class="hero__poster" data-poster
+           src="assets/frames/poster.webp"
+           alt="" fetchpriority="high" decoding="async" width="1280" height="720">
+      <canvas class="hero__frames" data-frames></canvas>
+      <div class="hero__scrim"></div>
+      <div class="hero__grid-lines"></div>
+      <span class="aurora aurora--a"></span>
+      <span class="aurora aurora--b"></span>
+    </div>
+
+    <!-- self-drawing blueprint elevation -->
+    <div class="blueprint" aria-hidden="true" data-tilt-layer="14">
+      <svg viewBox="0 0 560 400" data-draw>
+        <g class="bp-thin">
+          <path d="M30 372 H530" pathLength="1"/>
+          <path d="M30 366 V378 M530 366 V378" pathLength="1"/>
+          <path d="M60 352 H500" pathLength="1"/>
+        </g>
+        <g class="bp-main">
+          <path d="M60 350 V96 H500 V350" pathLength="1"/>
+          <path d="M60 96 H500 V146 H60 Z" pathLength="1"/>
+          <path d="M60 146 L38 172 H522 L500 146" pathLength="1"/>
+          <path d="M92 190 H236 V300 H92 Z" pathLength="1"/>
+          <path d="M266 190 H370 V300 H266 Z" pathLength="1"/>
+          <path d="M398 190 H468 V350 H398 Z" pathLength="1"/>
+        </g>
+        <g class="bp-detail">
+          <path d="M92 228 H236 M92 264 H236" pathLength="1"/>
+          <path d="M266 246 H370" pathLength="1"/>
+          <path d="M404 262 H414" pathLength="1"/>
+          <circle class="bp-dot" cx="164" cy="121" r="7"/>
+          <path d="M118 121 H150 M178 121 H442" pathLength="1"/>
+        </g>
+      </svg>
+      <span class="blueprint__tag">Elevation · Scale 1:50</span>
+    </div>
+
+    <!-- floating spec cards -->
+    <div class="spec-cards" aria-hidden="true">
+      <span class="spec-card spec-card--1" data-float="18">
+        <i>Est.</i><strong>2024</strong>
+      </span>
+      <span class="spec-card spec-card--2" data-float="-14">
+        <i>In-house</i><strong>Joinery</strong>
+      </span>
+      <span class="spec-card spec-card--3" data-float="22">
+        <i>Coverage</i><strong>Australia Wide</strong>
+      </span>
+    </div>
+
+    <div class="shell hero__inner">
+      <p class="eyebrow eyebrow--light" data-reveal>
+        <span class="eyebrow__tick"></span> Shopfitting &amp; Fitout Specialists
+      </p>
+
+      <h1 class="hero__title">
+        <span class="line"><span data-word>Bringing</span> <span data-word>Ideas</span> <span data-word>And</span></span>
+        <span class="line"><span data-word>Innovations</span> <span data-word class="accent-text sheen">To Life</span></span>
+      </h1>
+
+      <p class="hero__lede" data-reveal data-reveal-delay="500">
+        Established in 2024, BFS Projects is your one stop shop for all things shopfitting
+        and fitout — delivering high quality custom joinery for retail, hospitality and
+        commercial spaces right across Australia.
+      </p>
+
+      <div class="hero__cta" data-reveal data-reveal-delay="650">
+        <a class="btn btn--accent btn--lg" href="#contact" data-magnetic data-cursor="hide">
+          <span>Start Your Project</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+        </a>
+        <a class="btn btn--ghost btn--lg" href="#projects" data-magnetic data-cursor="hide">
+          <span>View Our Services</span>
+        </a>
+      </div>
+
+      <div class="hero__scroll" data-reveal data-reveal-delay="850">
+        <span class="hero__scroll-track"><span></span></span>
+        Scroll to explore
+      </div>
+    </div>
+
+    <!-- hero ticker -->
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker__track" data-marquee-clone>
+        <div class="ticker__set" data-marquee-set>
+          <span>Shopfitting</span><b>◆</b><span>Commercial Joinery</span><b>◆</b>
+          <span>Interior Design</span><b>◆</b><span>Planning &amp; Permits</span><b>◆</b>
+          <span>Architectural Metalwork</span><b>◆</b><span>Signage</span><b>◆</b>
+          <span>Project Management</span><b>◆</b>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ STATS ============ -->
+  <section class="stats" aria-label="Key facts">
+    <div class="shell stats__grid">
+      <div class="stat" data-reveal>
+        <span class="stat__ring" aria-hidden="true">
+          <svg viewBox="0 0 76 76">
+            <circle class="ring-bg" cx="38" cy="38" r="33"/>
+            <circle class="ring-fg" cx="38" cy="38" r="33" pathLength="1"/>
+          </svg>
+          <i>2</i>
+        </span>
+        <span class="stat__num"><span data-count="2">0</span></span>
+        <span class="stat__label">Years of shopfitting experience</span>
+      </div>
+      <div class="stat" data-reveal data-reveal-delay="100">
+        <span class="stat__ring" aria-hidden="true">
+          <svg viewBox="0 0 76 76">
+            <circle class="ring-bg" cx="38" cy="38" r="33"/>
+            <circle class="ring-fg" cx="38" cy="38" r="33" pathLength="1"/>
+          </svg>
+          <i>24</i>
+        </span>
+        <span class="stat__num"><span data-count="2024">0</span></span>
+        <span class="stat__label">Established in Melbourne</span>
+      </div>
+      <div class="stat" data-reveal data-reveal-delay="200">
+        <span class="stat__ring" aria-hidden="true">
+          <svg viewBox="0 0 76 76">
+            <circle class="ring-bg" cx="38" cy="38" r="33"/>
+            <circle class="ring-fg" cx="38" cy="38" r="33" pathLength="1"/>
+          </svg>
+          <i>7</i>
+        </span>
+        <span class="stat__num"><span data-count="7">0</span></span>
+        <span class="stat__label">Core in-house services</span>
+      </div>
+      <div class="stat" data-reveal data-reveal-delay="300">
+        <span class="stat__ring" aria-hidden="true">
+          <svg viewBox="0 0 76 76">
+            <circle class="ring-bg" cx="38" cy="38" r="33"/>
+            <circle class="ring-fg" cx="38" cy="38" r="33" pathLength="1"/>
+          </svg>
+          <i>AU</i>
+        </span>
+        <span class="stat__num"><span data-count="100">0</span><i>%</i></span>
+        <span class="stat__label">Australian owned business</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ABOUT ============ -->
+  <section class="section about" id="about">
+    <span class="blob blob--about" aria-hidden="true"></span>
+    <div class="shell about__grid">
+      <div class="about__media" data-reveal-mask data-tilt>
+        <img src="images/1.png"
+             alt="BFS Projects shopfitting work"
+             loading="lazy" data-parallax="0.08" decoding="async" width="1024" height="682">
+        <span class="about__frame" aria-hidden="true"></span>
+        <div class="about__badge" data-reveal data-reveal-delay="400">
+          <strong>2</strong>
+          <span>Years in the trade</span>
+        </div>
+      </div>
+
+      <div class="about__body">
+        <p class="eyebrow" data-reveal><span class="eyebrow__tick"></span> About Us</p>
+        <h2 class="h2" data-split>
+          2 Years Shopfitting <span class="underline-sweep">Experience</span>
+        </h2>
+        <p class="lede" data-reveal data-reveal-delay="160">
+          Established in 2024, BFS Projects are highly experienced in the shopfitting sector.
+          Demonstrating a plethora of completed work over the years, BFS Projects is your one
+          stop shop for all things shopfitting and fitout.
+        </p>
+
+        <ul class="ticklist" data-stagger>
+          <li><span class="ticklist__icon"></span>One stop solution for all fitouts and shopfitting</li>
+          <li><span class="ticklist__icon"></span>High quality custom and unique joinery</li>
+          <li><span class="ticklist__icon"></span>100% Australian owned business</li>
+        </ul>
+
+        <a class="btn btn--dark btn--lg" href="#services" data-reveal data-reveal-delay="320" data-magnetic data-cursor="hide">
+          <span>Read More</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROCESS TIMELINE ============ -->
+  <section class="section section--dark process" id="process" data-timeline>
+    <span class="blob blob--proc" aria-hidden="true"></span>
+    <div class="shell process__grid">
+      <div class="process__aside">
+        <p class="eyebrow eyebrow--light" data-reveal><span class="eyebrow__tick"></span> How We Work</p>
+        <h2 class="h2 h2--light" data-split>End To End, All In House</h2>
+        <p class="section__head-text" data-reveal data-reveal-delay="160">
+          One team carries your project from first sketch through to handover — which is why the
+          detail holds up and the timeline stays honest.
+        </p>
+        <span class="process__meter" aria-hidden="true">
+          <i data-timeline-meter></i>
+        </span>
+      </div>
+
+      <ol class="process__steps">
+        <li class="pstep" data-pstep>
+          <span class="pstep__rail" aria-hidden="true"><i></i></span>
+          <span class="pstep__num">01</span>
+          <div class="pstep__body">
+            <h3>Design</h3>
+            <p>
+              Our custom interior design team develops the concept for retail, fast food, cafe,
+              restaurant and sporting venues, plus any bespoke fitout requirement.
+            </p>
+          </div>
+        </li>
+        <li class="pstep" data-pstep>
+          <span class="pstep__rail" aria-hidden="true"><i></i></span>
+          <span class="pstep__num">02</span>
+          <div class="pstep__body">
+            <h3>Planning &amp; Permits</h3>
+            <p>
+              A dedicated in-house team plans, manages and coordinates the build, arranging
+              inspections and certification of the building work.
+            </p>
+          </div>
+        </li>
+        <li class="pstep" data-pstep>
+          <span class="pstep__rail" aria-hidden="true"><i></i></span>
+          <span class="pstep__num">03</span>
+          <div class="pstep__body">
+            <h3>Joinery Manufacture</h3>
+            <p>
+              Extensive in-house manufacturing capability produces high quality custom and unique
+              commercial joinery to spec.
+            </p>
+          </div>
+        </li>
+        <li class="pstep" data-pstep>
+          <span class="pstep__rail" aria-hidden="true"><i></i></span>
+          <span class="pstep__num">04</span>
+          <div class="pstep__body">
+            <h3>Metalwork &amp; Signage</h3>
+            <p>
+              Architectural metalwork fabrication and full commercial signage are delivered by the
+              same team, keeping finishes consistent.
+            </p>
+          </div>
+        </li>
+        <li class="pstep" data-pstep>
+          <span class="pstep__rail" aria-hidden="true"><i></i></span>
+          <span class="pstep__num">05</span>
+          <div class="pstep__body">
+            <h3>Install &amp; Handover</h3>
+            <p>
+              Project management coordinates installation on site through to completion, with
+              quality control and a 100% satisfaction guarantee.
+            </p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ PROJECTS ============ -->
+  <section class="section section--dark projects" id="projects">
+    <div class="glow glow--one" aria-hidden="true"></div>
+    <div class="shell">
+      <div class="section__head">
+        <div>
+          <p class="eyebrow eyebrow--light" data-reveal><span class="eyebrow__tick"></span> Latest Projects</p>
+          <h2 class="h2 h2--light" data-split>Ready To Bring Your Ideas To Life</h2>
+        </div>
+        <p class="section__head-text" data-reveal data-reveal-delay="160">
+          We're building our portfolio with exciting new projects. Check back soon to see our latest work.
+        </p>
+      </div>
+
+      <div class="proj-grid" data-stagger>
+        <!-- Projects will be added here as they're completed -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BIG TEXT MARQUEE ============ -->
+  <section class="bigtext" aria-hidden="true">
+    <div class="bigtext__row" data-marquee-clone>
+      <div class="bigtext__set" data-marquee-set>
+        <span>Shopfitting</span><b>✷</b><span>Joinery</span><b>✷</b><span>Design</span><b>✷</b>
+      </div>
+    </div>
+    <div class="bigtext__row bigtext__row--rev" data-marquee-clone>
+      <div class="bigtext__set" data-marquee-set>
+        <span>Metalwork</span><b>✷</b><span>Signage</span><b>✷</b><span>Permits</span><b>✷</b>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SERVICES ============ -->
+  <section class="section services" id="services">
+    <span class="blob blob--svc" aria-hidden="true"></span>
+    <div class="shell">
+      <div class="section__head">
+        <div>
+          <p class="eyebrow" data-reveal><span class="eyebrow__tick"></span> Our Services</p>
+          <h2 class="h2" data-split>
+            Best Shopfitters In Melbourne <br>And Across <span class="underline-sweep">Australia</span>
+          </h2>
+        </div>
+        <p class="section__head-text section__head-text--dark" data-reveal data-reveal-delay="160">
+          BFS Projects offer a wide range of services that few can match in Australia. With
+          extensive in house resources and manufacturing capabilities, our team have the ability to
+          deliver on any project no matter the custom requirement.
+        </p>
+      </div>
+
+      <div class="svc-grid" data-stagger>
+        <article class="svc" data-spotlight>
+          <span class="svc__num">01</span>
+          <span class="svc__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" data-draw-icon><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6" pathLength="1"/></svg>
+          </span>
+          <h3 class="svc__title"><a href="#services" data-cursor="link">Shopfitting</a></h3>
+          <p class="svc__text">
+            The foundations of BFS Projects were created on shopfitting and joinery projects in
+            the high end, retail, hospitality and commercial fit out sectors.
+          </p>
+          <span class="svc__more">Learn more <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span>
+        </article>
+
+        <article class="svc" data-spotlight>
+          <span class="svc__num">02</span>
+          <span class="svc__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" data-draw-icon><path d="M3 7h18v12H3zM3 7l3-4h12l3 4M9 19v-6h6v6" pathLength="1"/></svg>
+          </span>
+          <h3 class="svc__title"><a href="#services" data-cursor="link">Commercial Joinery</a></h3>
+          <p class="svc__text">
+            Highly skilled team of commercial joinery specialists servicing Australia wide. Our team
+            specialise in bespoke commercial joinery design, construction and project management.
+          </p>
+          <span class="svc__more">Learn more <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span>
+        </article>
+
+        <article class="svc" data-spotlight>
+          <span class="svc__num">03</span>
+          <span class="svc__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" data-draw-icon><path d="M12 19l7-7-4-4-7 7-3 7 7-3zM15 8l1.5-1.5a2.1 2.1 0 0 1 3 3L18 11" pathLength="1"/></svg>
+          </span>
+          <h3 class="svc__title"><a href="#services" data-cursor="link">Design</a></h3>
+          <p class="svc__text">
+            A professional custom interior design team in Melbourne, specialising in retail, fast
+            food, cafe, restaurant and sporting venues as well as custom fitout requirements.
+          </p>
+          <span class="svc__more">Learn more <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span>
+        </article>
+
+        <article class="svc" data-spotlight>
+          <span class="svc__num">04</span>
+          <span class="svc__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" data-draw-icon><path d="M8 3h8l4 4v14H4V3zM9 12h6M9 16h6M14 3v5h5" pathLength="1"/></svg>
+          </span>
+          <h3 class="svc__title"><a href="#services" data-cursor="link">Planning And Permits</a></h3>
+          <p class="svc__text">
+            A dedicated in house team for all planning and permits processing — planning, managing
+            and coordinating your build by arranging inspections and certification.
+          </p>
+          <span class="svc__more">Learn more <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span>
+        </article>
+
+        <article class="svc" data-spotlight>
+          <span class="svc__num">05</span>
+          <span class="svc__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" data-draw-icon><path d="M14 4l6 6-9 9H5v-6zM3 21h18" pathLength="1"/></svg>
+          </span>
+          <h3 class="svc__title"><a href="#services" data-cursor="link">Architectural Metal Work</a></h3>
+          <p class="svc__text">
+            Custom architectural metal work is a key service offering. We provide high quality
+            architectural metalwork design and fabrication services.
+          </p>
+          <span class="svc__more">Learn more <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span>
+        </article>
+
+        <article class="svc" data-spotlight>
+          <span class="svc__num">06</span>
+          <span class="svc__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" data-draw-icon><path d="M4 5h16v10H4zM12 15v5M8 20h8" pathLength="1"/></svg>
+          </span>
+          <h3 class="svc__title"><a href="#services" data-cursor="link">Signage</a></h3>
+          <p class="svc__text">
+            Full commercial signage services in Melbourne. Extensive experience in commercial
+            construction and signage, providing an end to end solution to all clients.
+          </p>
+          <span class="svc__more">Learn more <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BRAND MARQUEE ============ -->
+  <section class="brands" aria-label="Brand experience">
+    <div class="shell">
+      <h2 class="brands__title" data-reveal>Building Our Client Portfolio</h2>
+      <p style="text-align: center; color: #999; margin-top: 1rem;" data-reveal>We're excited to partner with new clients. Your brand could be featured here.</p>
+    </div>
+  </section>
+
+  <!-- ============ TESTIMONIALS (3D stack) ============ -->
+  <section class="section section--dark quotes" aria-label="Client testimonials">
+    <div class="glow glow--two" aria-hidden="true"></div>
+    <div class="shell">
+      <p class="eyebrow eyebrow--light center" data-reveal><span class="eyebrow__tick"></span> Testimonials</p>
+      <h2 class="h2 h2--light center" data-split>What Our Clients Will Say</h2>
+      <p style="text-align: center; color: #ccc; max-width: 600px; margin: 2rem auto;" data-reveal>
+        We're committed to delivering exceptional results. Client testimonials will appear here as we complete projects.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ TEAM ============ -->
+  <section class="section team" id="team">
+    <div class="shell about__grid about__grid--flip">
+      <div class="about__body">
+        <p class="eyebrow" data-reveal><span class="eyebrow__tick"></span> Our Team</p>
+        <h2 class="h2" data-split>
+          Professional Shopfitting <span class="underline-sweep">Experts</span>
+        </h2>
+        <p class="lede" data-reveal data-reveal-delay="160">
+          Our people are the difference. From quality control through to design and development,
+          every project is delivered by a highly trained team that takes pride in the detail.
+        </p>
+
+        <ul class="ticklist" data-stagger>
+          <li><span class="ticklist__icon"></span>Quality control, 100% satisfaction guarantee</li>
+          <li><span class="ticklist__icon"></span>Professional &amp; highly trained staff</li>
+          <li><span class="ticklist__icon"></span>Accurate design &amp; development processes</li>
+        </ul>
+
+        <a class="btn btn--dark btn--lg" href="#team" data-reveal data-reveal-delay="320" data-magnetic data-cursor="hide">
+          <span>Meet Our Team</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+
+      <div class="team-panel" data-reveal-mask data-tilt>
+        <span class="team-panel__grid" aria-hidden="true"></span>
+        <span class="team-panel__glow" aria-hidden="true"></span>
+        <div class="team-panel__content team-panel__content--logo">
+          <img class="team-panel__logo" src="images/logo.png?v=4" alt="BFS Projects logo"
+               loading="lazy" decoding="async">
+        </div>
+        <span class="about__frame" aria-hidden="true"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA ============ -->
+  <section class="cta" id="contact">
+    <div class="cta__bg cta__bg--pattern" aria-hidden="true"></div>
+    <span class="cta__rings" aria-hidden="true"></span>
+    <div class="shell cta__inner">
+      <h2 class="cta__title" data-split>Ready to start your fitout?</h2>
+      <p class="cta__text" data-reveal data-reveal-delay="100">
+        Talk to the team about your next shopfitting or joinery project. We manage everything from
+        design and permits through to manufacture and installation.
+      </p>
+      <div class="cta__actions" data-reveal data-reveal-delay="200">
+        <a class="btn btn--accent btn--lg" href="tel:0394321044" data-magnetic data-cursor="hide">
+          <span>Call 03 9432 1044</span>
+        </a>
+        <a class="btn btn--ghost btn--lg" href="mailto:siraj@bfs.com.au?subject=BFS%20Projects%20Enquiry" data-magnetic data-cursor="hide">
+          <span>Email Us</span>
+        </a>
+      </div>
+
+      <!-- Enquiry form. Posts to /api/enquiries; the action/method keep it
+           working if JS is unavailable. -->
+      <form class="enquiry" action="/api/enquiries" method="post" novalidate
+            data-enquiry-form data-reveal data-reveal-delay="300">
+        <div class="enquiry__row">
+          <div class="field">
+            <label class="field__label" for="eq-name">Name <span aria-hidden="true">*</span></label>
+            <input class="field__input" id="eq-name" name="name" type="text"
+                   autocomplete="name" required minlength="2" maxlength="80"
+                   aria-describedby="eq-name-err">
+            <p class="field__error" id="eq-name-err" data-error-for="name" role="alert"></p>
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="eq-email">Email <span aria-hidden="true">*</span></label>
+            <input class="field__input" id="eq-email" name="email" type="email"
+                   autocomplete="email" required maxlength="254"
+                   aria-describedby="eq-email-err">
+            <p class="field__error" id="eq-email-err" data-error-for="email" role="alert"></p>
+          </div>
+        </div>
+
+        <div class="enquiry__row">
+          <div class="field">
+            <label class="field__label" for="eq-phone">Phone</label>
+            <input class="field__input" id="eq-phone" name="phone" type="tel"
+                   autocomplete="tel" maxlength="30" aria-describedby="eq-phone-err">
+            <p class="field__error" id="eq-phone-err" data-error-for="phone" role="alert"></p>
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="eq-sector">Sector</label>
+            <select class="field__input field__input--select" id="eq-sector" name="sector"
+                    aria-describedby="eq-sector-err">
+              <option value="">Select a sector…</option>
+              <option value="retail">Retail</option>
+              <option value="hospitality">Hospitality</option>
+              <option value="cafe-restaurant">Café / Restaurant</option>
+              <option value="fast-food">Fast Food</option>
+              <option value="commercial-office">Commercial Office</option>
+              <option value="sporting-venue">Sporting Venue</option>
+              <option value="other">Other</option>
+            </select>
+            <p class="field__error" id="eq-sector-err" data-error-for="sector" role="alert"></p>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="field__label" for="eq-message">
+            About your project <span aria-hidden="true">*</span>
+          </label>
+          <textarea class="field__input field__input--area" id="eq-message" name="message"
+                    rows="4" required minlength="10" maxlength="2000"
+                    aria-describedby="eq-message-err"></textarea>
+          <p class="field__error" id="eq-message-err" data-error-for="message" role="alert"></p>
+        </div>
+
+        <!-- Honeypot: off-screen and hidden from assistive tech, so only bots
+             ever fill it in. -->
+        <div class="enquiry__trap" aria-hidden="true">
+          <label for="eq-company-website">Company website</label>
+          <input id="eq-company-website" name="company_website" type="text"
+                 tabindex="-1" autocomplete="off">
+        </div>
+
+        <div class="enquiry__foot">
+          <button class="btn btn--accent btn--lg" type="submit" data-enquiry-submit data-cursor="hide">
+            <span>Send Enquiry</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+          </button>
+          <p class="enquiry__note">We usually reply within one business day.</p>
+        </div>
+
+        <!-- Status messages are announced to screen readers as they appear. -->
+        <p class="enquiry__status" data-enquiry-status role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ============ SECTORS ============ -->
+  <section class="section sectors" id="sectors">
+    <div class="shell">
+      <div class="section__head">
+        <div>
+          <p class="eyebrow" data-reveal><span class="eyebrow__tick"></span> Sectors We Serve</p>
+          <h2 class="h2" data-split>
+            Fitouts Built For Every <span class="underline-sweep">Space</span>
+          </h2>
+        </div>
+        <p class="section__head-text section__head-text--dark" data-reveal data-reveal-delay="160">
+          From compact retail tenancies through to full hospitality venues, we scope, manufacture
+          and install to suit the way each space actually needs to work.
+        </p>
+      </div>
+
+      <div class="sector-grid" data-stagger>
+        <article class="sector" data-spotlight>
+          <span class="sector__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" data-draw-icon><path d="M3 9h18v11H3zM3 9l2-4h14l2 4M9 20v-6h6v6" pathLength="1"/></svg>
+          </span>
+          <h3 class="sector__title">Retail</h3>
+          <p class="sector__text">
+            Shopfronts, display joinery and counters built to hold up under daily
+            foot traffic.
+          </p>
+        </article>
+
+        <article class="sector" data-spotlight>
+          <span class="sector__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" data-draw-icon><path d="M6 3v7a3 3 0 0 0 6 0V3M9 10v11M18 3c-1.5 2-2 3.5-2 6s.5 3 2 3v9" pathLength="1"/></svg>
+          </span>
+          <h3 class="sector__title">Hospitality</h3>
+          <p class="sector__text">
+            Bars, back-of-house and dining joinery detailed for service flow and
+            cleaning access.
+          </p>
+        </article>
+
+        <article class="sector" data-spotlight>
+          <span class="sector__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" data-draw-icon><path d="M4 9h13v6a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4zM17 10h2a2 2 0 0 1 0 5h-2M4 5h13" pathLength="1"/></svg>
+          </span>
+          <h3 class="sector__title">Cafés &amp; Restaurants</h3>
+          <p class="sector__text">
+            Compact fitouts that make small footprints work harder without
+            crowding the floor.
+          </p>
+        </article>
+
+        <article class="sector" data-spotlight>
+          <span class="sector__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" data-draw-icon><path d="M5 20h14M6 20V9h12v11M9 9V5h6v4M9 13h6" pathLength="1"/></svg>
+          </span>
+          <h3 class="sector__title">Fast Food</h3>
+          <p class="sector__text">
+            Rollout-ready builds delivered to brand standards and tight trading
+            deadlines.
+          </p>
+        </article>
+
+        <article class="sector" data-spotlight>
+          <span class="sector__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" data-draw-icon><path d="M4 21V4h10v17M14 10h6v11M7 8h4M7 12h4M7 16h4M17 14h1M17 18h1" pathLength="1"/></svg>
+          </span>
+          <h3 class="sector__title">Commercial Offices</h3>
+          <p class="sector__text">
+            Reception joinery, meeting rooms and workspace fitouts with clean,
+            consistent finishes.
+          </p>
+        </article>
+
+        <article class="sector" data-spotlight>
+          <span class="sector__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" data-draw-icon><path d="M12 4a8 8 0 1 0 0 16 8 8 0 0 0 0-16zM4.5 9h15M4.5 15h15M12 4c-2.5 2.5-2.5 13.5 0 16M12 4c2.5 2.5 2.5 13.5 0 16" pathLength="1"/></svg>
+          </span>
+          <h3 class="sector__title">Sporting Venues</h3>
+          <p class="sector__text">
+            Club rooms, kiosks and bar fitouts built for peak-crowd wear and
+            quick turnaround.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="shell site-footer__grid">
+    <div class="fcol fcol--brand">
+      <img class="site-footer__logo"
+           src="images/logo.png?v=4"
+           alt="BFS Projects" height="80" loading="lazy" decoding="async">
+      <p>
+        Established in 2024, BFS Projects has 2 years experience servicing the
+        shopfitting and construction industries.
+      </p>
+    </div>
+
+    <div class="fcol">
+      <h2 class="fcol__title">Quick Links</h2>
+      <ul class="fcol__list">
+        <li><a href="#">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#process">Process</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#sectors">Sectors</a></li>
+        <li><a href="#team">Our Team</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+
+    <div class="fcol">
+      <h2 class="fcol__title">Services</h2>
+      <ul class="fcol__list">
+        <li><a href="#services">Shopfitting</a></li>
+        <li><a href="#services">Commercial Joinery</a></li>
+        <li><a href="#services">Architectural Metal Work</a></li>
+        <li><a href="#services">Signage</a></li>
+        <li><a href="#services">Design</a></li>
+        <li><a href="#services">Planning and Permits</a></li>
+        <li><a href="#process">Project Management</a></li>
+      </ul>
+    </div>
+
+    <div class="fcol">
+      <h2 class="fcol__title">Contact Info</h2>
+      <ul class="fcol__list fcol__list--contact">
+        <li><a href="tel:0394321044">03 9432 1044</a></li>
+        <li><a href="mailto:siraj@bfs.com.au?subject=BFS%20Projects%20Enquiry">siraj@bfs.com.au</a></li>
+        <li><a href="mailto:richard@bfs.com.au?subject=BFS%20Projects%20Enquiry">richard@bfs.com.au</a></li>
+        <li>6a/11 Bryants Road, Dandenong</li>
+        <li>Victoria 3175</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="wordmark" aria-hidden="true" data-parallax-x="0.06">BFS</div>
+
+  <div class="shell site-footer__base">
+    <p>Copyright 2026 © All Rights Reserved</p>
+    <button class="to-top" type="button" data-to-top aria-label="Back to top">
+      <span class="to-top__ring" aria-hidden="true">
+        <svg viewBox="0 0 44 44">
+          <circle class="ring-bg" cx="22" cy="22" r="19"/>
+          <circle class="ring-fg" cx="22" cy="22" r="19" pathLength="1" data-to-top-ring/>
+        </svg>
+        <svg class="to-top__arrow" viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></svg>
+      </span>
+      <span>Back to top</span>
+    </button>
+  </div>
+</footer>
+
+<script src="assets/js/main.js" defer></script>
+<script src="assets/js/effects.js" defer></script>
+<script src="assets/js/frames.js" defer></script>
+<script src="assets/js/enquiry.js" defer></script>
+</body>
+</html>

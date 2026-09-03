@@ -1,0 +1,226 @@
+/* ============================================================
+   Shape Shopfitters — motion layer
+   Every effect here is opt-out via prefers-reduced-motion
+   (see the bottom of this file).
+   ============================================================ */
+
+/* ---------- 1. scroll reveal ---------- */
+[data-reveal],
+[data-stagger] > *{
+  opacity:0;
+  transform:translateY(34px);
+  transition:opacity .85s var(--ease),transform .85s var(--ease);
+  transition-delay:var(--reveal-delay,0ms);
+}
+[data-reveal].is-visible,
+[data-stagger] > .is-visible{
+  opacity:1;
+  transform:none;
+}
+
+/* ---------- 2. image mask reveal ---------- */
+[data-reveal-mask]{
+  clip-path:inset(0 0 100% 0);
+  transition:clip-path 1.15s var(--ease);
+}
+[data-reveal-mask].is-visible{clip-path:inset(0 0 0 0)}
+
+[data-reveal-mask] img{
+  transform:scale(1.18);
+  transition:transform 1.5s var(--ease);
+}
+[data-reveal-mask].is-visible img{transform:scale(1)}
+
+/* ---------- 3. hero word stagger ---------- */
+.hero__title [data-word]{
+  opacity:0;
+  transform:translateY(105%) rotate(4deg);
+  transition:opacity .9s var(--ease),transform 1s var(--ease);
+  transition-delay:var(--word-delay,0ms);
+}
+.hero.is-ready .hero__title [data-word]{
+  opacity:1;
+  transform:none;
+}
+
+/* hero background slow zoom (Ken Burns) */
+@keyframes kenburns{
+  0%  {transform:scale(1.06) translate3d(0,0,0)}
+  100%{transform:scale(1.18) translate3d(-1.2%,-1.4%,0)}
+}
+.hero.is-ready [data-kenburns]{
+  animation:kenburns 22s var(--ease) forwards;
+}
+
+/* hero scroll cue */
+@keyframes cue{
+  0%  {transform:translateX(-100%)}
+  55% {transform:translateX(0)}
+  100%{transform:translateX(100%)}
+}
+.hero__scroll-track span{animation:cue 2.1s var(--ease) infinite}
+
+/* ---------- 4. per-character heading reveal ---------- */
+[data-split] .char{
+  opacity:0;
+  transform:translateY(.85em) rotate(5deg) scale(.94);
+  transition:opacity .7s var(--ease),transform .8s var(--ease);
+  transition-delay:var(--char-delay,0ms);
+}
+[data-split].is-visible .char{
+  opacity:1;
+  transform:none;
+}
+/* headings that were not split (JS unavailable) must still be readable */
+[data-split]:not(.is-split){opacity:1}
+
+/* ---------- 5. self-drawing SVG line art ---------- */
+[data-draw] path,
+[data-draw] circle{
+  stroke-dasharray:1;
+  stroke-dashoffset:1;
+  transition:stroke-dashoffset 2s var(--ease);
+  transition-delay:var(--draw-delay,0ms);
+}
+[data-draw].is-drawn path,
+[data-draw].is-drawn circle{stroke-dashoffset:0}
+
+/* ---------- 6. marquees ---------- */
+@keyframes marquee-slide{
+  from{transform:translate3d(0,0,0)}
+  to  {transform:translate3d(-50%,0,0)}
+}
+.marquee__track{
+  animation:marquee-slide var(--marquee-speed,34s) linear infinite;
+}
+.marquee:hover .marquee__track{animation-play-state:paused}
+
+/* ---------- 7. header entrance ---------- */
+@keyframes header-drop{
+  from{opacity:0;transform:translateY(-100%)}
+  to  {opacity:1;transform:none}
+}
+.site-header{animation:header-drop .9s var(--ease) .4s both}
+
+/* ---------- 8. counters ---------- */
+[data-count]{display:inline-block;font-variant-numeric:tabular-nums}
+
+/* ---------- 9. section glow drift ---------- */
+@keyframes drift{
+  0%,100%{transform:translate3d(0,0,0)}
+  50%    {transform:translate3d(24px,-28px,0)}
+}
+.glow{animation:drift 16s ease-in-out infinite}
+.glow--two{animation-duration:21s;animation-direction:reverse}
+
+@keyframes blob-float{
+  0%,100%{transform:translate3d(0,0,0) scale(1)}
+  50%    {transform:translate3d(30px,-34px,0) scale(1.08)}
+}
+.blob{animation:blob-float 18s ease-in-out infinite}
+.blob--svc{animation-duration:23s;animation-direction:reverse}
+.blob--proc{animation-duration:26s}
+
+/* The two aurora layers are the largest elements on the page (up to
+   760px). Drifting them forever meant the compositor re-processed
+   both areas on every single frame for the whole life of the page,
+   to produce a movement that is barely perceptible on a soft
+   gradient over 20 seconds. They are now static. */
+
+/* ---------- 10. floating spec cards drift ----------
+   Finite rather than infinite: the cards bob a few times as the
+   hero settles, then come to rest. Each keyframe cycle ends at the
+   rest position, so stopping is invisible — but three layers are no
+   longer animating for as long as the tab stays open. */
+@keyframes card-float{
+  0%,100%{transform:translate3d(0,0,0)}
+  50%    {transform:translate3d(0,-14px,0)}
+}
+.hero.is-ready .spec-card--1{animation:card-float 7s ease-in-out 2s 3 both}
+.hero.is-ready .spec-card--2{animation:card-float 9s ease-in-out 2.4s 3 both}
+.hero.is-ready .spec-card--3{animation:card-float 8s ease-in-out 2.8s 3 both}
+
+/* The grain used to shimmer via a stepped transform. Combined with
+   mix-blend-mode that meant a full-screen re-blend every frame, so
+   the texture is now static. */
+
+/* ---------- 11. mobile menu link stagger ---------- */
+.mobile-menu__inner li:nth-child(1) a{transition-delay:.10s}
+.mobile-menu__inner li:nth-child(2) a{transition-delay:.16s}
+.mobile-menu__inner li:nth-child(3) a{transition-delay:.22s}
+.mobile-menu__inner li:nth-child(4) a{transition-delay:.28s}
+.mobile-menu__inner li:nth-child(5) a{transition-delay:.34s}
+.mobile-menu__inner li:nth-child(6) a{transition-delay:.40s}
+.mobile-menu__inner li:nth-child(7) a{transition-delay:.46s}
+
+/* ============================================================
+   NO-JS FALLBACK
+   The reveal states above start from opacity:0 / clipped, and
+   JS is what releases them. If scripting is unavailable or the
+   bundle fails to load, hand over the finished layout instead
+   of a blank page.
+   ============================================================ */
+html:not(.js) [data-reveal],
+html:not(.js) [data-stagger] > *,
+html:not(.js) .hero__title [data-word],
+html:not(.js) .spec-card,
+html:not(.js) .about__frame,
+html:not(.js) .pstep{
+  opacity:1 !important;
+  transform:none !important;
+}
+html:not(.js) [data-reveal-mask]{clip-path:none !important}
+html:not(.js) [data-reveal-mask] img{transform:none !important}
+html:not(.js) .pstep__rail i{transform:scaleY(1) !important}
+html:not(.js) .blueprint{opacity:.5 !important}
+html:not(.js) [data-draw] path,
+html:not(.js) [data-draw] circle,
+html:not(.js) [data-draw-icon] path{stroke-dashoffset:0 !important}
+html:not(.js) .ring-fg{stroke-dashoffset:.08 !important}
+html:not(.js) .underline-sweep::after{transform:scaleX(1) !important}
+html:not(.js) .preloader{display:none !important}
+html:not(.js) .cursor{display:none !important}
+
+/* ============================================================
+   REDUCED MOTION
+   Users who ask their OS for less motion get the finished
+   layout instantly, with no transforms or looping animation.
+   ============================================================ */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.001ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.001ms !important;
+    scroll-behavior:auto !important;
+  }
+  [data-reveal],
+  [data-stagger] > *,
+  .hero__title [data-word],
+  [data-split] .char,
+  .spec-card{opacity:1 !important;transform:none !important}
+
+  [data-reveal-mask]{clip-path:none !important}
+  [data-reveal-mask] img{transform:none !important}
+  .about__frame{opacity:1 !important;transform:none !important}
+
+  .marquee__track,.ticker__track,.bigtext__row{animation:none !important}
+  .glow,.blob,.aurora,.grain,.cta__rings{animation:none !important}
+  .grain{display:none}
+  .hero__scroll{display:none}
+  .cursor{display:none !important}
+  .underline-sweep::after{transform:scaleX(1) !important}
+
+  .blueprint{opacity:.45 !important}
+  [data-draw] path,[data-draw] circle,
+  [data-draw-icon] path{stroke-dashoffset:0 !important}
+  .ring-fg{stroke-dashoffset:.08 !important}
+
+  .pstep{opacity:1 !important;transform:none !important}
+  .pstep__rail i{transform:scaleY(1) !important}
+  .sheen{
+    animation:none !important;
+    -webkit-text-fill-color:var(--accent) !important;
+    color:var(--accent) !important;
+    background:none !important;
+  }
+}
