@@ -597,10 +597,16 @@
         </a>
       </div>
 
-      <!-- Enquiry form. Posts to /api/enquiries; the action/method keep it
-           working if JS is unavailable. -->
-      <form class="enquiry" action="/api/enquiries" method="post" novalidate
+      <!-- Enquiry form. Posts to Web3Forms, which emails the submission to the
+           client. The native action/method keep it working if JS is off. -->
+      <form class="enquiry" action="https://api.web3forms.com/submit" method="post" novalidate
             data-enquiry-form data-reveal data-reveal-delay="300">
+        <!-- Web3Forms access key. Create a free key at https://web3forms.com
+             (tied to the client's email) and paste it below. Submissions are
+             emailed straight to that address — no backend required. -->
+        <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY">
+        <input type="hidden" name="subject" value="New enquiry from Building Future Solution">
+        <input type="hidden" name="from_name" value="Building Future Solution website">
         <div class="enquiry__row">
           <div class="field">
             <label class="field__label" for="eq-name">Name <span aria-hidden="true">*</span></label>
@@ -660,6 +666,9 @@
           <label for="eq-company-website">Company website</label>
           <input id="eq-company-website" name="company_website" type="text"
                  tabindex="-1" autocomplete="off">
+          <!-- Web3Forms' own honeypot: it silently drops any submission where
+               this is filled. -->
+          <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off">
         </div>
 
         <div class="enquiry__foot">

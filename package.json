@@ -1,18 +1,9 @@
 {
-  "name": "bfs-projects",
-  "version": "1.0.0",
+  "name": "building-future-solution",
+  "version": "2.0.0",
   "private": true,
-  "description": "BFS Projects marketing site with an enquiry backend",
-  "type": "module",
-  "engines": {
-    "node": ">=22.5.0"
-  },
+  "description": "Building Future Solution — static marketing site (enquiry form via Web3Forms)",
   "scripts": {
-    "start": "node server/server.js",
-    "dev": "node --watch server/server.js",
-    "test": "node --test server/*.test.js"
-  },
-  "dependencies": {
-    "express": "5.2.1"
+    "dev": "npx --yes http-server . -p 4123 -c-1"
   }
 }
