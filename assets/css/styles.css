@@ -254,7 +254,10 @@ body.is-locked{overflow:hidden}
 }
 .mobile-menu[hidden]{display:none}
 .mobile-menu.is-open{clip-path:circle(150% at calc(100% - 46px) 46px)}
-.mobile-menu__inner{text-align:center;padding:100px 24px 40px}
+.mobile-menu__inner{
+  text-align:center;padding:100px 24px 40px;
+  width:100%;max-width:440px;box-sizing:border-box;
+}
 .mobile-menu__inner ul{display:flex;flex-direction:column;gap:6px}
 .mobile-menu__inner a{
   display:block;padding:10px;
@@ -266,9 +269,20 @@ body.is-locked{overflow:hidden}
 .mobile-menu.is-open .mobile-menu__inner a{opacity:1;transform:none}
 .mobile-menu__inner a:hover{color:var(--accent)}
 .mobile-menu__foot{
-  margin-top:36px;display:flex;flex-direction:column;gap:8px;
+  margin-top:36px;display:flex;flex-direction:column;gap:10px;
   color:var(--accent);font-weight:500;
 }
+/* Contact links must NOT inherit the huge nav-link size, or the long email
+   overflows the screen. Reset to a readable size and let it wrap/break. */
+.mobile-menu__foot a{
+  display:block;padding:2px;
+  font-family:var(--font-body);font-weight:500;
+  font-size:1rem;line-height:1.4;color:var(--accent);
+  opacity:1;transform:none;
+  max-width:100%;
+  overflow-wrap:anywhere;word-break:break-word;
+}
+.mobile-menu__foot a:hover{color:#fff}
 
 /* ---------- scroll progress ---------- */
 .scroll-progress{position:fixed;inset:0 0 auto;height:3px;z-index:101;background:transparent;pointer-events:none}
