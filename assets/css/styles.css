@@ -57,7 +57,7 @@
 
 /* ---------- reset ---------- */
 *,*::before,*::after{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
+html{-webkit-text-size-adjust:100%;overflow-x:hidden}
 html:focus-within{scroll-behavior:smooth}
 body{
   margin:0;
@@ -796,6 +796,42 @@ body.is-locked{overflow:hidden}
   .btn--lg{padding:15px 26px}
   .hero__cta .btn,.cta__actions .btn{flex:1 1 100%;justify-content:center}
   .site-footer__base{flex-direction:column;align-items:flex-start}
+
+  /* Let underlined heading words wrap on phones so a long non-breaking
+     word (e.g. "Australia") can't push the heading past the screen edge. */
+  .underline-sweep{white-space:normal}
+  /* The hero words animate inside overflow:hidden lines; a touch more
+     vertical room stops descenders being clipped mid-reveal. */
+  .hero__title .line{padding-bottom:.12em}
+  /* Trim card inner padding so content isn't squeezed on narrow screens. */
+  .svc{padding:30px 22px}
+  .sector{padding:28px 22px}
+  .enquiry{padding:26px 20px 24px}
+}
+
+/* ============================================================
+   SMALL PHONES (≤430px — iPhone SE through Pro Max portrait)
+   Tightens oversized display type and spacing that the 560px
+   tier still leaves too large on a real phone screen.
+   ============================================================ */
+@media (max-width:430px){
+  .shell{padding-inline:15px}
+
+  /* The big outlined footer wordmark is the single largest element on
+     mobile. Cap it hard and neutralise its JS horizontal parallax so it
+     can never nudge past the viewport edge. */
+  .wordmark{font-size:clamp(3.4rem,20vw,6rem);transform:none !important}
+
+  /* Rolling big-type band — bring the outlined caps down to a size that
+     reads on a phone instead of dominating it. */
+  .bigtext__set span{font-size:clamp(1.9rem,11vw,2.8rem)}
+
+  /* Hero and section headings a step smaller for comfortable wrapping. */
+  .hero__title{font-size:clamp(2.1rem,10vw,2.9rem)}
+  .h2{font-size:clamp(1.6rem,7.5vw,2.2rem)}
+
+  /* Section vertical rhythm eases in slightly on small screens. */
+  .section{padding:clamp(52px,14vw,72px) 0}
 }
 
 /* ============================================================
